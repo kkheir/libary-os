@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mini Library Management System (Next.js)
 
-## Getting Started
+A full-stack job-test project built with Next.js App Router, Prisma, SQLite, and NextAuth.
 
-First, run the development server:
+## Features
+
+- Book management (`ADMIN`): add, edit, delete books
+- Check-in / check-out workflow:
+	- `Borrow` = check-out
+	- `Return` = check-in
+- Search books by title, author, genre, ISBN, and description
+- Authentication:
+	- Credentials (email/password)
+	- GitHub SSO (optional, env-based)
+- Role-based access control:
+	- `ADMIN`: full CRUD + all return permissions
+	- `MEMBER`: browse/search + borrow + return own borrowed books
+- AI feature:
+	- `/api/ai/recommendations` provides relevance-scored recommendations and reasoning from free-text interests
+- Seed data and demo accounts included
+
+## Tech Stack
+
+- Next.js 16 (App Router, TypeScript)
+- Prisma 6 + SQLite
+- NextAuth 4
+- Tailwind CSS
+
+## Quick Start
+
+1. Install dependencies
+
+```bash
+npm install
+```
+
+2. Create env file
+
+```bash
+cp .env.example .env
+```
+
+3. Run migrations + seed
+
+```bash
+npm run db:migrate
+npm run db:seed
+```
+
+4. Start development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- http://localhost:3003
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Demo Credentials (seeded)
 
-## Learn More
+- Admin:
+	- Email: `admin@library.local`
+	- Password: `Admin123!`
+- Member:
+	- Email: `member@library.local`
+	- Password: `Member123!`
 
-To learn more about Next.js, take a look at the following resources:
+## Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+See `.env.example`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Required:
+- `DATABASE_URL`
+- `AUTH_SECRET`
+- `NEXTAUTH_SECRET`
+- `NEXTAUTH_URL`
 
-## Deploy on Vercel
+Optional:
+- `GITHUB_ID`
+- `GITHUB_SECRET`
+- `ADMIN_EMAILS` (comma-separated)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` – start dev server
+- `npm run build` – production build
+- `npm run start` – run production server
+- `npm run lint` – lint
+- `npm run db:migrate` – run Prisma migrations
+- `npm run db:seed` – seed database
+
+## API Overview
+
+- `POST /api/register`
+- `GET /api/books?q=...`
+- `POST /api/books` (`ADMIN`)
+- `PUT /api/books/:id` (`ADMIN`)
+- `DELETE /api/books/:id` (`ADMIN`)
+- `POST /api/books/:id/checkout`
+- `POST /api/books/:id/checkin`
+- `GET /api/ai/recommendations?q=...`
+
+## Deployment (Vercel)
+
+This environment could not complete deployment because the Vercel token/login is not available.
+
+Deploy from your machine/account:
+
+1. `npx vercel login`
+2. `npx vercel --prod`
+3. Add production env vars in Vercel dashboard
+4. Run migrations in deployment environment if needed
+
+After deploy, your live URL will be provided by Vercel (for example: `https://your-project.vercel.app`).
