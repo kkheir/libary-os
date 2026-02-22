@@ -1,6 +1,6 @@
 # Mini Library Management System (Next.js)
 
-A full-stack job-test project built with Next.js App Router, Prisma, SQLite, and NextAuth.
+A full-stack job-test project built with Next.js App Router, Prisma, PostgreSQL, and NextAuth.
 
 ## Features
 
@@ -22,7 +22,7 @@ A full-stack job-test project built with Next.js App Router, Prisma, SQLite, and
 ## Tech Stack
 
 - Next.js 16 (App Router, TypeScript)
-- Prisma 6 + SQLite
+- Prisma 6 + PostgreSQL
 - NextAuth 4
 - Tailwind CSS
 
@@ -102,6 +102,8 @@ Optional:
 - `GET /api/ai/recommendations?q=...`
 
 ## Deployment (Vercel)
+
+Use a managed PostgreSQL database (Neon, Supabase, Railway, Render, etc.) and set `DATABASE_URL` in Vercel project settings before deploying.
 
 This environment could not complete deployment because the Vercel token/login is not available.
 
