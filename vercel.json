@@ -1,3 +1,4 @@
 {
-    "name": "aspire-ai-tools-app"
+    "name": "aspire-ai-tools-app",
+    "buildCommand": "prisma generate && prisma migrate deploy && next build"
 }
