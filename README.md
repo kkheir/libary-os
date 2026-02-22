@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Mini Library Management System (Next.js)
 
 A full-stack job-test project built with Next.js App Router, Prisma, PostgreSQL, and NextAuth.
@@ -115,3 +116,7 @@ Deploy from your machine/account:
 4. Run migrations in deployment environment if needed
 
 After deploy, your live URL will be provided by Vercel (for example: `https://your-project.vercel.app`).
+=======
+# library-os
+Aspire test AI projects
+>>>>>>> refs/remotes/origin/main
